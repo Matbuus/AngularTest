@@ -1,0 +1,29 @@
+<h2>List of managers</h2>
+<table class="table table-dark">
+  <thead>
+  <tr>
+    <th scope="col">ID</th>
+    <th scope="col">Name</th>
+    <th scope="col">E-mail</th>
+    <th scope="col">Salary</th>
+  </tr>
+  </thead>
+  <tbody>
+
+  <tr *ngFor="let manager of managers">
+    <th scope="row">{{manager.id}}</th>
+    <td>{{manager.name}}</td>
+    <td>{{manager.email}}</td>
+    <td>{{manager.salary}}</td>
+    <td><button type="button" class="btn btn-danger" (click)="deleteManager(manager.id)">Delete</button>
+      <button *ngIf=!this.showClients.get(manager) type="button" class="btn btn-info" (click)="showClts(manager)">Show Clients</button>
+      <button *ngIf=this.showClients.get(manager) type="button" class="btn btn-info" (click)="hideClts(manager)">Hide Clients</button>
+      <div *ngIf=this.showClients.get(manager)><app-manager [managerId]=manager.id></app-manager></div>
+    </td>
+  </tr>
+
+  </tbody>
+</table>
+<button *ngIf=!this.managerAdd type="button" class="btn btn-light" (click)="this.managerAdd = true;">Add a manager</button>
+<button *ngIf=this.managerAdd type="button" class="btn btn-danger" (click)="this.managerAdd = false;">Cancel</button>
+<div *ngIf=this.managerAdd><app-manager-add [hrComponent]="this"> </app-manager-add></div>

@@ -1,0 +1,58 @@
+<div class="toCenter">
+  <h1 *ngIf="!update">Add a new client! </h1>
+
+  <div class="row col-sm-6">
+    <form name="form" (ngSubmit)="f.form.valid && traitement()" #f="ngForm" novalidate>
+      <div class="form-group">
+        <label for="id">Client's ID</label>
+        <input type="text" class="form-control" name="id" [(ngModel)]="form.id" #id="ngModel" required minlength="8" maxlength="8" placeholder={{clientToChange.id}}/>
+        <div *ngIf="f.submitted && id.invalid">
+          <div *ngIf="id.errors.required">id is required</div>
+          <div *ngIf="id.errors.minlength">id is 8 characters</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="name">Client's name</label>
+        <input type="text" class="form-control" name="name" [(ngModel)]="form.name" #name="ngModel"
+               required placeholder={{clientToChange.name}} />
+        <div *ngIf="f.submitted && name.invalid">
+          <div *ngIf="name.errors.required">Username is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Client's email</label>
+        <input type="text" class="form-control" name="email" [(ngModel)]="form.email" #email="ngModel" required email placeholder={{clientToChange.email}} />
+        <div *ngIf="f.submitted && email.invalid">
+          <div *ngIf="email.errors.required">Email is required</div>
+          <div *ngIf="email.errors.email">Email must be a valid email address</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="income">Client's income</label>
+        <input type="number" class="form-control" name="income" [(ngModel)]="form.income" #income="ngModel"
+               required placeholder={{clientToChange.income}}/>
+        <div *ngIf="f.submitted && income.invalid">
+          <div *ngIf="income.errors.required">Income is required</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="score">Client's spending score</label>
+        <input type="number" class="form-control" name="score" [(ngModel)]="form.score" #score="ngModel"
+               required placeholder={{clientToChange.score}}/>
+        <div *ngIf="f.submitted && score.invalid">
+          <div *ngIf="score.errors.required">Score is required</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <button class="btn btn-primary">Register</button>
+        <div *ngIf="f.submitted && isSignUpFailed" class="alert alert-warning">
+          Signup failed!<br/>{{errorMessage}}
+        </div>
+      </div>
+
+    </form>
+  </div>
+
+</div>

@@ -1,0 +1,4 @@
+.toCenter{
+  display: flex;
+  flex-direction: column;
+}

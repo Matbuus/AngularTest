@@ -1,0 +1,41 @@
+<h2>Manager {{ managerId }}'s clients:</h2>
+
+<table class="table table-dark">
+  <thead>
+  <tr>
+    <th scope="col">ID</th>
+    <th scope="col">Name</th>
+    <th scope="col">E-mail</th>
+    <th scope="col">Income</th>
+    <th scope="col">Score</th>
+    <th scope="col">Cluster</th>
+  </tr>
+  </thead>
+  <tbody>
+
+  <tr *ngFor="let client of clients">
+    <th scope="row">{{client.id}}</th>
+    <td>{{client.name}}</td>
+    <td>{{client.email}}</td>
+    <td>{{client.income}}</td>
+    <td>{{client.score}}</td>
+    <td>{{client.cluster}}</td>
+    <span *ngIf="isManager">
+    <td><button type="button" class="btn btn-success">Send e-mail</button></td>
+    <td><button type="button" class="btn btn-danger" (click)="deleteClient(client.id)">Delete</button></td>
+    <td><button type="button" class="btn btn-info" (click)="clusterClient(client.id)">Cluster</button></td>
+    <td>
+      <button *ngIf=!this.updateClients.get(client) type="button" class="btn btn-primary" (click)="updateClts(client)">Update</button>
+      <button *ngIf=this.updateClients.get(client) type="button" class="btn btn-primary" (click)="hideUpdateClts(client)">Cancel Update</button>
+      <div *ngIf=this.updateClients.get(client)><app-client [managerId]="managerId" [clientToChange]=client [update]="true" [managerComponent]="this"> </app-client></div>
+    </td>
+    </span>
+  </tr>
+
+  </tbody>
+</table>
+<span *ngIf="isManager">
+<button *ngIf=!this.addClient type="button" class="btn btn-light" (click)="this.addClient = true;">Add a client</button>
+<button *ngIf=this.addClient type="button" class="btn btn-danger" (click)="this.addClient = false;">Cancel</button>
+<div *ngIf=this.addClient><app-client [managerId]="managerId" [managerComponent]="this"> </app-client></div>
+</span>
