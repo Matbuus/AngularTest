@@ -1,0 +1,28 @@
+<h2>Clients</h2>
+<table class="table table-dark">
+  <thead>
+  <tr>
+    <th scope="col">ID</th>
+    <th scope="col">Name</th>
+    <th scope="col">E-mail</th>
+    <th scope="col">Income</th>
+    <th scope="col">Score</th>
+    <th scope="col">Cluster</th>
+  </tr>
+  </thead>
+  <tbody>
+
+  <tr *ngFor="let client of clients">
+    <th scope="row">{{client.id}}</th>
+    <td>{{client.name}}</td>
+    <td>{{client.email}}</td>
+    <td>{{client.income}}</td>
+    <td>{{client.score}}</td>
+    <td>{{client.cluster}}</td>
+    <td><button type="button" class="btn btn-success">Envoyer e-mail</button></td>
+    <td><button type="button" class="btn btn-primary">Modifier</button></td>
+    <td><button type="button" class="btn btn-danger">Supprimer</button></td>
+  </tr>
+
+  </tbody>
+</table>
